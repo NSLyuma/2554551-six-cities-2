@@ -1,3 +1,4 @@
+import { AppRoute } from '../../const';
 import { Link } from 'react-router-dom';
 import styles from './not-found.module.css';
 
@@ -8,7 +9,7 @@ const NotFound = () => (
 
       <p className={styles.text}>Страница не найдена</p>
 
-      <Link to="/">
+      <Link to={AppRoute.Main}>
         <span className={styles.link}>Вернуться на главную</span>
       </Link>
     </div>
