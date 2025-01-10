@@ -8,6 +8,7 @@ type Props = {
 
 const ReviewItem = ({ review }: Props) => {
   const { date, user, rating, comment } = review;
+  const ratingWidth = Math.round(rating) * 20;
 
   return (
     <li className="reviews__item">
@@ -28,7 +29,7 @@ const ReviewItem = ({ review }: Props) => {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{ width: `${Math.round(rating) * 20}%` }}></span>
+            <span style={{ width: `${ratingWidth}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

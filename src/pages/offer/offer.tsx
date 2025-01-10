@@ -2,14 +2,20 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../store';
-import { AppRoute, AuthorizationStatus, ResponseStatus } from '../../const';
+import {
+  AppRoute,
+  AuthorizationStatus,
+  OFFER_IMAGES_COUNT,
+  ResponseStatus,
+  REVIEWS_MAX_COUNT,
+} from '../../const';
 import { selectSortedComments } from '../../store/comments/comments.selectors';
 import {
   selectOffer,
   selectOfferResponseStatus,
 } from '../../store/offers/offers.selectors';
 import { selectAuthorizationStatus } from '../../store/user/user.selectors';
-import { selectNearbyOffers } from '../../store/nearPlaces/nearPlaces.selectors';
+import { selectNearbyOffers } from '../../store/near-places/near-places.selectors';
 import {
   changeFavoriteStatus,
   getComments,
@@ -32,6 +38,8 @@ const Offer = () => {
   const nearbyOffers = useSelector(selectNearbyOffers);
   const offerResponseStatus = useSelector(selectOfferResponseStatus);
   const authorizationStatus = useSelector(selectAuthorizationStatus);
+
+  const ratingWidth = Math.round(offer?.rating || 0) * 20;
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -61,6 +69,7 @@ const Offer = () => {
 
   const locations = nearbyOffers.map((nearby) => nearby.location);
   const offerLocation = offer?.location;
+  const offerImages = offer?.images.slice(0, OFFER_IMAGES_COUNT);
 
   if (offerLocation) {
     locations.push(offerLocation);
@@ -81,9 +90,8 @@ const Offer = () => {
           <section className="offer">
             <div className="offer__gallery-container container">
               <div className="offer__gallery">
-                {offer.images.slice(0, 6).map((src) => (
-                  <OfferImage src={src} key={src} />
-                ))}
+                {offerImages &&
+                  offerImages.map((src) => <OfferImage src={src} key={src} />)}
               </div>
             </div>
             <div className="offer__container container">
@@ -118,10 +126,7 @@ const Offer = () => {
                 </div>
                 <div className="offer__rating rating">
                   <div className="offer__stars rating__stars">
-                    <span
-                      style={{ width: `${Math.round(offer.rating) * 20}%` }}
-                    >
-                    </span>
+                    <span style={{ width: `${ratingWidth}%` }}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="offer__rating-value rating__value">
@@ -185,7 +190,7 @@ const Offer = () => {
                     Reviews &middot;{' '}
                     <span className="reviews__amount">{reviews.length}</span>
                   </h2>
-                  <ReviewList reviews={reviews.slice(0, 10)} />
+                  <ReviewList reviews={reviews.slice(0, REVIEWS_MAX_COUNT)} />
 
                   {authorizationStatus === AuthorizationStatus.Auth && (
                     <ReviewForm />
