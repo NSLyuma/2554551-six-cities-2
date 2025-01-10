@@ -29,7 +29,9 @@ export const createApi = (): AxiosInstance => {
         browserHistory.push(AppRoute.NotFound);
       }
 
-      store.dispatch(showAlert(error.message));
+      if (error.response && error.response?.status >= 500) {
+        store.dispatch(showAlert(error.message));
+      }
 
       throw error;
     }
