@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { NearPlacesState } from '../../lib/types/store';
 import { ResponseStatus } from '../../const';
-import { getNearbyOffers } from '../api-actions';
+import { changeFavoriteStatus, getNearbyOffers } from '../api-actions';
+import { FavoriteStatusChange } from '../../lib/types/favorite';
 
 const initialState: NearPlacesState = {
   nearbyOffers: [],
@@ -25,7 +26,17 @@ export const nearPlacesSlice = createSlice({
       .addCase(getNearbyOffers.rejected, (state) => {
         state.nearbyOffers = [];
         state.nearbyOffersResponseStatus = ResponseStatus.Error;
-      }),
+      })
+      .addCase(
+        changeFavoriteStatus.fulfilled,
+        (state, action: PayloadAction<FavoriteStatusChange>) => {
+          state.nearbyOffers = state.nearbyOffers.map((offer) =>
+            offer.id === action.payload.id
+              ? { ...offer, isFavorite: action.payload.data.isFavorite }
+              : offer
+          );
+        }
+      ),
 });
 
 export default nearPlacesSlice.reducer;
