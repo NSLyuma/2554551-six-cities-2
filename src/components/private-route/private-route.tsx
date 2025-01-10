@@ -12,7 +12,7 @@ const PrivateRoute = ({ children }: PropsWithChildren) => {
   } else if (authorizationStatus === AuthorizationStatus.Unknown) {
     return null;
   } else {
-    <Navigate to={AppRoute.Login} />;
+    return <Navigate to={AppRoute.Login} />;
   }
 };
 
