@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store';
 import { selectAlertMessage } from '../../store/alert/alert.selectors';
-import { clearAlert } from '../../store/alert/alertSlice';
+import { clearAlert } from '../../store/alert/alert-slice';
 import styles from './alert.module.css';
 
 const Alert = () => {

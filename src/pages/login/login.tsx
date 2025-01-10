@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AppRoute, AuthorizationStatus, CityName } from '../../const';
 import { selectAuthorizationStatus } from '../../store/user/user.selectors';
-import { selectCity } from '../../store/city/citySlice';
+import { selectCity } from '../../store/city/city-slice';
 import HeaderLayout from '../../components/header-layout/header-layout';
 import LoginForm from '../../components/login-form/login-form';
 

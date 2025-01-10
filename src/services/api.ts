@@ -4,7 +4,7 @@ import { AppRoute } from '../const';
 import { browserHistory } from '../browser-history';
 import { getCookie } from './cookie';
 import { store } from '../store';
-import { showAlert } from '../store/alert/alertSlice';
+import { showAlert } from '../store/alert/alert-slice';
 
 const BASE_URL = 'https://13.design.htmlacademy.pro/six-cities';
 const TIMEOUT = 5000;

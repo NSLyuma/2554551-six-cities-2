@@ -5,7 +5,7 @@ import { CardImgAttributes, CardType } from '../../lib/types/card';
 import { OfferPartial } from '../../lib/types/offer';
 import { AppRoute, AuthorizationStatus, CARD_OPTIONS } from '../../const';
 import { selectAuthorizationStatus } from '../../store/user/user.selectors';
-import { selectOfferId } from '../../store/offers/offersSlice';
+import { selectOfferId } from '../../store/offers/offers-slice';
 import { changeFavoriteStatus } from '../../store/api-actions';
 import clsx from 'clsx';
 

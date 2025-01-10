@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store';
 import { selectActiveCity } from '../../store/city/city.selectors';
-import { selectCity } from '../../store/city/citySlice';
+import { selectCity } from '../../store/city/city-slice';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import clsx from 'clsx';

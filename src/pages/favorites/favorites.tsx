@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store';
 import { AppRoute, ResponseStatus } from '../../const';
 import { Link } from 'react-router-dom';
-import { selectCity } from '../../store/city/citySlice';
+import { selectCity } from '../../store/city/city-slice';
 import {
   selectFavorites,
   selectFavoritesResponseStatus,

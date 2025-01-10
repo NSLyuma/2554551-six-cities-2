@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../store';
 import { PlacesSortingName } from '../../const';
 import { selectPlacesSorting } from '../../store/sorting/sorting.selectors';
-import { sortPlaces } from '../../store/sorting/sortingSlice';
+import { sortPlaces } from '../../store/sorting/sorting-slice';
 import ClickAwayListener from 'react-click-away-listener';
 import clsx from 'clsx';
 
